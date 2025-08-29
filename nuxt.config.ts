@@ -11,11 +11,36 @@ export default defineNuxtConfig({
 
   modules: [
     '@element-plus/nuxt',
-    'nuxt-svgo'
+    'nuxt-svgo',
+    "@nuxtjs/i18n"
   ],
 
   elementPlus: {
     /** Options */
+  },
+
+  devServer: {
+    host: "*",
+    port: 3000,
+  },
+
+  i18n: {
+    strategy: "no_prefix",
+    langDir: "../locales",
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: "i18n_redirected",
+      redirectOn: "root",
+      fallbackLocale: "uz",
+      alwaysRedirect: true,
+    },
+    locales: [
+      { code: "uz", file: "uz/uz-UZ.json", language: "uz" },
+      { code: "kril", file: "uz_cyr/cr-CR.json", language: "kril" },
+      { code: "ru", file: "ru/ru-RU.json", language: "ru" },
+      { code: "en", file: "en/en-EN.json", language: "en" },
+    ],
+    defaultLocale: "uz",
   },
 
   svgo: {

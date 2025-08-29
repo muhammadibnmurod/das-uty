@@ -1,5 +1,5 @@
 {
-  "swaggerUrl": "swaggerUrl",
+  "swaggerUrl": "https://dev-gateway.railwayinfra.uz/api/docs-json",
   "outputFile": "apiMethods.ts",
   "outputPath": "../api/",
   "rmMethodPrefix": true
