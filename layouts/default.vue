@@ -1,11 +1,11 @@
 <template>
   <div class="flex">
     <div class="shrink-0 basis-auto">
-      <AppSidebar :collapsed="isSidebarCollapsed" />
+      <AppSidebar :isCollapse="isSidebarCollapsed" />
     </div>
 
     <div class="grow basis-auto overflow-hidden bg-gray-0 dark:bg-gray-90">
-      <AppNavbar @toggle-sidebar="toggleSidebar" :collapsed="isSidebarCollapsed" />
+      <AppNavbar @toggle-sidebar="toggleSidebar" :isCollapse="isSidebarCollapsed" />
       <div class="p-6 bg-gray-0 dark:bg-gray-90 relative">
         <NuxtPage />
       </div>

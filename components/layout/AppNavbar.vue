@@ -3,7 +3,18 @@
     navbar
     {{ $t("test") }}
     <icon-check />
-    <!-- or <IconCheck /> -->
-    <!-- you can use nuxt-svgo like that -->
+
+    <el-button @click="$emit('toggle-sidebar')">Toggle Sidebar</el-button>
   </div>
 </template>
+
+<script setup lang="ts">
+
+defineProps({
+  isCollapse: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+</script>

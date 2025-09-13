@@ -1,8 +1,4 @@
 <template>
-  <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-    <el-radio-button :value="false">expand</el-radio-button>
-    <el-radio-button :value="true">collapse</el-radio-button>
-  </el-radio-group>
   <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" @open="handleOpen"
     @close="handleClose">
     <el-sub-menu index="1">
@@ -53,7 +49,13 @@ import {
   Setting,
 } from '@element-plus/icons-vue'
 
-const isCollapse = ref(true)
+defineProps({
+  isCollapse: {
+    type: Boolean,
+    default: false,
+  },
+})
+
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
