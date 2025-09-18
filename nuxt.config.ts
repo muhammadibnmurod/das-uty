@@ -15,10 +15,18 @@ export default defineNuxtConfig({
 
   modules: [
     '@element-plus/nuxt',
+    "@nuxtjs/tailwindcss",
+    [
+      '@nuxtjs/color-mode',
+      {
+        preference: 'system',
+        fallback: 'light',
+        classSuffix: '',
+      },
+    ],
     'nuxt-svgo',
     "@nuxtjs/i18n"
   ],
-
   elementPlus: {
     /** Options */
   },
@@ -26,6 +34,12 @@ export default defineNuxtConfig({
   devServer: {
     host: "*",
     port: 3000,
+  },
+
+  runtimeConfig: {
+    public: {
+      NUXT_PUBLIC_API_BASE_URL: process.env.NUXT_PUBLIC_API_BASE_URL,
+    }
   },
 
   i18n: {

@@ -1,7 +1,7 @@
 <template>
   <el-header height="80px"
-    class="flex justify-between sticky top-0 z-50 !py-4 !px-8 items-center w-full bg-white dark:bg-gray-80 border-b border-gray-20 dark:border-gray-70">
-    <div class="flex items-center gap-4">
+    class="flex justify-between sticky top-0 !py-4 !px-8 items-center w-full bg-white dark:bg-gray-800 z-0">
+    <!-- <div class="flex items-center gap-4">
       <el-button @click="$emit('toggle-sidebar')">Toggle Sidebar</el-button>
       <div v-if="collapsible" @click="$emit('toggle-sidebar')"
         class="w-12 h-12 dark:bg-gray-80 bg-gray-5 flex items-center justify-center cursor-pointer rounded-full transition-all duration-1000"
@@ -10,10 +10,20 @@
       </div>
 
       <BreadCrumb :items="items" />
+    </div> -->
+
+    <div class="flex items-center gap-2">
+      <el-avatar :size="50" src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
+
+      <div class="flex flex-col gap-1">
+        <span class="font-semibold dark:text-gray-200">{{ displayName }}</span>
+        <span class="text-sm text-gray-500 dark:text-gray-300">Administrator</span>
+      </div>
     </div>
+
     <div class="flex items-center gap-8">
       <div class="flex items-center gap-2">
-        <div @click="toggleDarkMode" v-if="!isDarkMode"
+        <div @click="toggleDarkMode" v-if="!isDark"
           class="w-12 h-12 rounded-full bg-gray-5 flex items-center transition-all justify-center cursor-pointer hover:bg-gray-10">
           <icon-sun class="w-6 h-6" />
         </div>
@@ -36,7 +46,7 @@
           <img :src="flags[locale]?.flag" :alt="flags[locale]?.code" class="w-5 h-5" />
           <span class="uppercase dark:text-gray-0">{{
             flags[locale]?.code
-            }}</span>
+          }}</span>
           <IconCaretDown class="w-4 h-4 dark:text-gray-0" />
         </div>
         <template #dropdown>
@@ -80,6 +90,12 @@ import flagEngland from "@/assets/images/flag/flagEngland.png";
 
 import { useUserStore } from "@/store/auth";
 
+const colorMode = useColorMode()
+const isDark = computed({
+  get: () => colorMode.value === 'dark',
+  set: v => (colorMode.preference = v ? 'dark' : 'light')
+})
+
 const user = useUserStore();
 const router = useRouter();
 
@@ -99,7 +115,7 @@ const props = defineProps({
   },
 });
 
-const displayName = computed(() => user.userInfo?.firstName);
+const displayName = computed(() => user.userInfo?.firstName ? user.userInfo?.firstName : "Boboqulov Ulug'bek");
 
 const initials = computed(() => {
   const parts = String(displayName.value).trim().split(/\s+/).slice(0, 2);
@@ -161,6 +177,6 @@ watchEffect(() => {
 });
 
 const toggleDarkMode = () => {
-  isDarkMode.value = !isDarkMode.value;
+  isDark.value = !isDark.value;
 };
 </script>
