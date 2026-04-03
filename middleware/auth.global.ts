@@ -1,16 +1,12 @@
 export default defineNuxtRouteMiddleware((to, from) => {
-  // useCookie('access_token').value = 'test'
   const token = useCookie('access_token')
-  const authPaths = [
-    '/auth',
-  ]
+  const authPaths = ['/auth']
+  const requiresAuth = to.meta.requiresAuth === true
 
-  // User is NOT logged in but trying to access a protected route
-  if (!token.value && !authPaths.includes(to.path)) {
+  if (!token.value && requiresAuth) {
     return navigateTo('/auth')
   }
 
-  // User IS logged in but trying to access an auth page
   if (token.value && authPaths.includes(to.path)) {
     return navigateTo('/example')
   }
