@@ -1,49 +1,19 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useI18n } from '#imports'
 import secondSvg1 from '@/assets/icons/second-1.svg'
 import secondSvg2 from '@/assets/icons/second-2.svg'
 import secondSvg3 from '@/assets/icons/second-3.svg'
 import secondSvg4 from '@/assets/icons/second-4.svg'
 
 const services = [
-  {
-    title: 'Platform and system development',
-    body: 'We develop custom web platforms, mobile apps, and corporate systems tailored to client needs.',
-    tone: 'blue',
-    icon: secondSvg1,
-    badge: 'Core',
-    stat: '200+',
-    statLabel: 'Projects',
-  },
-  {
-    title: 'Mobile and web applications',
-    body: 'Creating modern, secure, and user-friendly apps for Android, iOS, and web.',
-    tone: 'gold',
-    icon: secondSvg2,
-    badge: 'Popular',
-    stat: '50+',
-    statLabel: 'Apps Built',
-  },
-  {
-    title: 'Data analysis and monitoring',
-    body: 'We build real-time analytics, monitoring, and reporting systems for effective decision making.',
-    tone: 'violet',
-    icon: secondSvg3,
-    badge: 'Smart',
-    stat: '99%',
-    statLabel: 'Uptime',
-  },
-  {
-    title: 'Automation and security solutions',
-    body: 'Process automation, remote management, technical security systems, all in one platform.',
-    tone: 'pink',
-    icon: secondSvg4,
-    badge: 'Secure',
-    stat: '24/7',
-    statLabel: 'Support',
-  },
+  { key: 's1', tone: 'blue',   icon: secondSvg1, stat: '200+' },
+  { key: 's2', tone: 'gold',   icon: secondSvg2, stat: '50+'  },
+  { key: 's3', tone: 'violet', icon: secondSvg3, stat: '99%'  },
+  { key: 's4', tone: 'pink',   icon: secondSvg4, stat: '24/7' },
 ]
 
+useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const visibleCards = ref<boolean[]>(services.map(() => false))
 const titleVisible = ref(false)
@@ -87,38 +57,36 @@ onUnmounted(() => {
   <section ref="sectionRef" class="second-shell">
     <div class="second-card">
       <div class="header-wrap" data-index="title" :class="{ 'title-visible': titleVisible }">
-        <span class="section-tag">Our Services</span>
-        <h2>Modern technologies and practical solutions for digitalizing your business</h2>
-        <p class="subtitle">
-          End-to-end digital transformation — from concept to deployment and beyond.
-        </p>
+        <span class="section-tag">{{ $t('second.tag') }}</span>
+        <h2>{{ $t('second.title') }}</h2>
+        <p class="subtitle">{{ $t('second.sub') }}</p>
       </div>
 
       <div class="service-grid">
         <article
           v-for="(item, i) in services"
-          :key="item.title"
+          :key="item.key"
           class="service-item"
           :class="[`tone-${item.tone}`, { visible: visibleCards[i] }]"
           :data-index="i"
         >
           <div class="card-top">
             <div class="service-icon" :class="`icon-${item.tone}`">
-              <component :is="item.icon" :alt="item.title" class="service-icon-img" />
+              <component :is="item.icon" :alt="$t(`second.${item.key}_title`)" class="service-icon-img" />
             </div>
-            <span class="service-badge" :class="`badge-${item.tone}`">{{ item.badge }}</span>
+            <span class="service-badge" :class="`badge-${item.tone}`">{{ $t(`second.${item.key}_badge`) }}</span>
           </div>
 
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.body }}</p>
+          <h3>{{ $t(`second.${item.key}_title`) }}</h3>
+          <p>{{ $t(`second.${item.key}_body`) }}</p>
 
           <div class="card-footer">
             <div class="stat-block">
               <span class="stat-value" :class="`stat-${item.tone}`">{{ item.stat }}</span>
-              <span class="stat-label">{{ item.statLabel }}</span>
+              <span class="stat-label">{{ $t(`second.${item.key}_stat_label`) }}</span>
             </div>
             <a href="#" class="service-link" :class="`link-${item.tone}`">
-              Discover More
+              {{ $t('second.discover') }}
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M2 6h8M7 3l3 3-3 3"
@@ -375,4 +343,33 @@ onUnmounted(() => {
   .service-grid { grid-template-columns: 1fr; }
   .second-card h2 { font-size: 17px; }
 }
+
+/* ── Dark mode ───────────────────────────────────── */
+:global(.dark) .second-shell { background: #080b18; }
+:global(.dark) .second-card {
+  background: #0f1120;
+  box-shadow: 0 2px 0 rgba(0,0,0,.2), 0 24px 48px rgba(0,0,0,.4);
+}
+:global(.dark) .section-tag  { background: rgba(79,108,255,.15); color: #7b8fff; }
+:global(.dark) .second-card h2 { color: #e8eaf0; }
+:global(.dark) .subtitle     { color: rgba(255,255,255,.45); }
+
+:global(.dark) .service-item {
+  background: #13152a;
+  border-color: rgba(255,255,255,.07);
+}
+:global(.dark) .service-item h3 { color: #e0e3f0; }
+:global(.dark) .service-item p  { color: rgba(255,255,255,.45); }
+:global(.dark) .card-footer  { border-top-color: rgba(255,255,255,.06); }
+:global(.dark) .stat-label   { color: rgba(255,255,255,.35); }
+
+:global(.dark) .icon-blue   { background: rgba(79,114,255,.12); border-color: rgba(79,114,255,.2); }
+:global(.dark) .icon-gold   { background: rgba(244,183,64,.1);  border-color: rgba(244,183,64,.2); }
+:global(.dark) .icon-violet { background: rgba(124,98,255,.12); border-color: rgba(124,98,255,.2); }
+:global(.dark) .icon-pink   { background: rgba(255,111,183,.1); border-color: rgba(255,111,183,.2); }
+
+:global(.dark) .badge-blue   { background: rgba(79,114,255,.15);  color: #7b8fff; }
+:global(.dark) .badge-gold   { background: rgba(244,183,64,.12);  color: #f4b740; }
+:global(.dark) .badge-violet { background: rgba(124,98,255,.15);  color: #a98eff; }
+:global(.dark) .badge-pink   { background: rgba(255,111,183,.12); color: #ff8ec8; }
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <Main />
-    <second />
+  <Main />
+  <second />
   <third />
-    <fourth />
+  <fourth />
 </template>

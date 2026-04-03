@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useI18n } from '#imports'
 import ThirdImg from '@/assets/images/third.png'
 
+useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
 const imgVisible = ref(false)
 const contentVisible = ref(false)
@@ -10,22 +12,22 @@ const visibleItems = ref([false, false, false, false])
 const features = [
   {
     tone: 'blue',
-    title: 'Experienced consulting and technical team',
+    key: 'f1',
     icon: `<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="currentColor"/>`,
   },
   {
     tone: 'violet',
-    title: 'Flexible approach for each project',
+    key: 'f2',
     icon: `<path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z" fill="currentColor"/>`,
   },
   {
     tone: 'cyan',
-    title: 'High quality and reliable results',
+    key: 'f3',
     icon: `<path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" fill="currentColor"/>`,
   },
   {
     tone: 'pink',
-    title: 'Solutions based on modern technologies',
+    key: 'f4',
     icon: `<path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" fill="currentColor"/>`,
   },
 ]
@@ -78,11 +80,11 @@ onUnmounted(() => observer?.disconnect())
           <!-- floating badge -->
           <div class="float-badge badge-top">
             <span class="badge-dot dot-cyan" />
-            <span>120+ Projects</span>
+            <span>{{ $t('third.badge_projects') }}</span>
           </div>
           <div class="float-badge badge-bottom">
             <span class="badge-dot dot-pink" />
-            <span>7 Years Experience</span>
+            <span>{{ $t('third.badge_years') }}</span>
           </div>
         </div>
       </div>
@@ -93,21 +95,17 @@ onUnmounted(() => observer?.disconnect())
         data-anim="content"
         :class="{ 'anim-in-right': contentVisible }"
       >
-        <span class="kicker-tag">About Us</span>
+        <span class="kicker-tag">{{ $t('third.tag') }}</span>
 
-        <h2>Empowering your business<br>with technology</h2>
+        <h2>{{ $t('third.title') }}</h2>
 
-        <p class="third-text">
-          "DAS UTY" LLC is your technology partner capable of turning digital transformation
-          into practical results in any industry. Our mission is to enhance the efficiency
-          and security of our clients through modern IT solutions.
-        </p>
+        <p class="third-text">{{ $t('third.body') }}</p>
 
         <!-- feature list -->
         <ul class="feature-list">
           <li
             v-for="(f, i) in features"
-            :key="f.title"
+            :key="f.key"
             class="feature-item"
             :data-anim="`item-${i}`"
             :class="[`tone-${f.tone}`, { 'item-visible': visibleItems[i] }]"
@@ -115,13 +113,13 @@ onUnmounted(() => observer?.disconnect())
             <div class="feature-icon" :class="`icon-${f.tone}`">
               <svg width="16" height="16" viewBox="0 0 24 24" v-html="f.icon" />
             </div>
-            <span>{{ f.title }}</span>
+            <span>{{ $t(`third.${f.key}`) }}</span>
           </li>
         </ul>
 
         <div class="btn-row">
           <button class="third-btn">
-            About us
+            {{ $t('third.btn') }}
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round"/>
@@ -131,7 +129,7 @@ onUnmounted(() => observer?.disconnect())
             <span class="trust-dot" />
             <span class="trust-dot" />
             <span class="trust-dot" />
-            <span class="trust-text">Trusted by 85+ clients</span>
+            <span class="trust-text">{{ $t('third.trust') }}</span>
           </div>
         </div>
       </div>
@@ -408,4 +406,26 @@ onUnmounted(() => observer?.disconnect())
 @media (max-width: 480px) {
   .float-badge { display: none }
 }
+
+/* ── Dark mode ───────────────────────────────── */
+:global(.dark) .third-shell { background: #080b18; }
+:global(.dark) .third-card {
+  background: #0f1120;
+  box-shadow: 0 2px 0 rgba(0,0,0,.2), 0 24px 48px rgba(0,0,0,.4);
+}
+:global(.dark) .kicker-tag { background: rgba(79,108,255,.15); color: #7b8fff; }
+:global(.dark) .third-content h2 { color: #e8eaf0; }
+:global(.dark) .third-text { color: rgba(255,255,255,.45); }
+:global(.dark) .feature-item { color: rgba(255,255,255,.82); }
+:global(.dark) .icon-blue   { background: rgba(79,114,255,.12);  color: #6d8dff; }
+:global(.dark) .icon-violet { background: rgba(124,98,255,.12);  color: #a98eff; }
+:global(.dark) .icon-cyan   { background: rgba(26,173,164,.12);  color: #2dd4bf; }
+:global(.dark) .icon-pink   { background: rgba(255,111,183,.1);  color: #ff8ec8; }
+:global(.dark) .float-badge {
+  background: #1a1d32;
+  color: rgba(255,255,255,.85);
+  box-shadow: 0 8px 28px rgba(0,0,0,.4);
+}
+:global(.dark) .trust-text { color: rgba(255,255,255,.4); }
+:global(.dark) .trust-dot  { border-color: #0f1120; }
 </style>

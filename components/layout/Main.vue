@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useI18n } from '#imports'
 
+useI18n()
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const statProjects = ref(0)
 const statClients = ref(0)
@@ -95,33 +97,30 @@ onUnmounted(() => {
         <p class="kicker">Das Uty</p>
 
         <h1>
-          <span class="grad">Your trusted<br>partner in<br>digital tech</span>
+          <span class="grad">{{ $t('hero.title') }}</span>
         </h1>
 
-        <p class="sub-text">
-          We create customized IT solutions for your business:
-          industry, transportation, service, and other sectors.
-        </p>
+        <p class="sub-text">{{ $t('hero.sub') }}</p>
 
         <div class="cta-row">
-          <button class="services-btn">Use Services</button>
+          <button class="services-btn">{{ $t('hero.cta') }}</button>
           <span class="orange-dot" />
         </div>
 
         <div class="stats">
           <div class="stat">
             <span class="stat-num">{{ statProjects }}+</span>
-            <span class="stat-label">Projects</span>
+            <span class="stat-label">{{ $t('hero.projects') }}</span>
           </div>
           <div class="stat-divider" />
           <div class="stat">
             <span class="stat-num">{{ statClients }}+</span>
-            <span class="stat-label">Clients</span>
+            <span class="stat-label">{{ $t('hero.clients') }}</span>
           </div>
           <div class="stat-divider" />
           <div class="stat">
             <span class="stat-num">{{ statYears }}</span>
-            <span class="stat-label">Years exp.</span>
+            <span class="stat-label">{{ $t('hero.years') }}</span>
           </div>
         </div>
       </div>
@@ -205,6 +204,23 @@ onUnmounted(() => {
   background: linear-gradient(135deg, #060b18 0%, #0a0f24 50%, #060b18 100%);
   color: var(--ink);
 }
+
+/* ── Light mode ── */
+:global(.light) .hs {
+  --ink:   #0d0e1c;
+  --muted: rgba(13,14,28,0.55);
+  background: linear-gradient(135deg, #eef1ff 0%, #f4f6ff 50%, #eef1ff 100%);
+}
+:global(.light) .hs .kicker { color: var(--blue); }
+:global(.light) .hs .grad {
+  background: linear-gradient(135deg, #0d0e1c 30%, #2b5cff 65%, #7b47ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+:global(.light) .hs .sub-text { color: var(--muted); }
+:global(.light) .hs .stat-label { color: rgba(13,14,28,0.4); }
+:global(.light) .hs .stat-divider { background: rgba(13,14,28,0.12); }
 
 
 /* ── Ambient blobs ── */

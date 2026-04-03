@@ -59,7 +59,7 @@ const themes = [
 ];
 
 // i18n
-const { locale, locales } = useI18n();
+const { locale, locales, setLocale } = useI18n();
 const localeOptions = computed(() =>
   locales.value.map((l: any) => ({
     code: l.code,
@@ -69,14 +69,14 @@ const localeOptions = computed(() =>
 
 // nav
 const navItems = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#" },
+  { labelKey: "nav.home", href: "#" },
+  { labelKey: "nav.about", href: "#" },
   {
-    label: "Service",
+    labelKey: "nav.service",
     children: [
-      { label: "Automation", href: "#" },
-      { label: "Analytics", href: "#" },
-      { label: "Mobile & Web", href: "#" },
+      { labelKey: "nav.service_automation", href: "#" },
+      { labelKey: "nav.service_analytics", href: "#" },
+      { labelKey: "nav.service_mobile_web", href: "#" },
     ],
   },
 ];
@@ -90,25 +90,25 @@ const navItems = [
       </div>
 
       <nav class="nav-links">
-        <template v-for="item in navItems" :key="item.label">
+        <template v-for="item in navItems" :key="item.labelKey">
           <a v-if="!item.children" :href="item.href" class="nav-link">
-            {{ item.label }}
+            {{ $t(item.labelKey) }}
           </a>
 
           <div v-else class="nav-dropdown">
-            <button class="nav-link" @click="toggleDropdown(item.label)">
-              {{ item.label }} <span class="caret">▾</span>
+            <button class="nav-link" @click="toggleDropdown(item.labelKey)">
+              {{ $t(item.labelKey) }} <span class="caret">▾</span>
             </button>
 
-            <div v-if="openDropdown === item.label" class="dropdown-menu">
+            <div v-if="openDropdown === item.labelKey" class="dropdown-menu">
               <a
                 v-for="child in item.children"
-                :key="child.label"
+                :key="child.labelKey"
                 :href="child.href"
                 class="dropdown-item"
                 @click="closeDropdowns"
               >
-                {{ child.label }}
+                {{ $t(child.labelKey) }}
               </a>
             </div>
           </div>
@@ -142,7 +142,7 @@ const navItems = [
                 :key="opt.code"
                 class="dropdown-item"
                 :class="{ 'is-active': locale === opt.code }"
-                @click="locale = opt.code; closeDropdowns();"
+                @click="setLocale(opt.code); closeDropdowns();"
               >
                 <span class="item-label">{{ opt.label }}</span>
                 <svg v-if="locale === opt.code" class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -211,7 +211,7 @@ const navItems = [
           </Transition>
         </div>
 
-        <button class="contact-btn">Contact</button>
+        <button class="contact-btn">{{ $t('nav.contact') }}</button>
       </div>
     </div>
   </header>

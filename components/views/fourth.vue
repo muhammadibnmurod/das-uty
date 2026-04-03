@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useI18n } from '#imports'
 import icon1 from '@/assets/icons/fourth/fourth-1.svg'
 import icon2 from '@/assets/icons/fourth/fourth-2.svg'
 import icon3 from '@/assets/icons/fourth/fourth-3.svg'
@@ -8,48 +9,12 @@ import icon5 from '@/assets/icons/fourth/fourth-5.svg'
 import icon6 from '@/assets/icons/fourth/fourth-6.svg'
 
 const items = [
-  {
-    title: 'Digital automation',
-    body: 'Flexible solutions to make your processes fast, consistent, and free from human errors.',
-    icon: icon1,
-    tone: 'blue',
-    num: '01',
-  },
-  {
-    title: 'Analytical models',
-    body: 'AI algorithms that support decision-making based on statistical and behavioral data.',
-    icon: icon2,
-    tone: 'violet',
-    num: '02',
-  },
-  {
-    title: 'Optimization of digital business processes',
-    body: 'Save time and resources with systems that automate internal workflows, document flow, and task execution.',
-    icon: icon3,
-    tone: 'cyan',
-    num: '03',
-  },
-  {
-    title: 'Web & mobile app development',
-    body: 'We simplify digital communication by developing custom web and mobile platforms for your clients, employees, or partners.',
-    icon: icon4,
-    tone: 'gold',
-    num: '04',
-  },
-  {
-    title: 'Security and control systems',
-    body: 'Digital tools to remotely monitor and ensure the security of your facilities.',
-    icon: icon5,
-    tone: 'pink',
-    num: '05',
-  },
-  {
-    title: 'Real-time monitoring',
-    body: 'Online monitoring of infrastructure, services, or production processes.',
-    icon: icon6,
-    tone: 'green',
-    num: '06',
-  },
+  { key: 'i1', icon: icon1, tone: 'blue',   num: '01' },
+  { key: 'i2', icon: icon2, tone: 'violet', num: '02' },
+  { key: 'i3', icon: icon3, tone: 'cyan',   num: '03' },
+  { key: 'i4', icon: icon4, tone: 'gold',   num: '04' },
+  { key: 'i5', icon: icon5, tone: 'pink',   num: '05' },
+  { key: 'i6', icon: icon6, tone: 'green',  num: '06' },
 ]
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -91,19 +56,16 @@ onUnmounted(() => observer?.disconnect())
         data-anim="header"
         :class="{ 'header-visible': headerVisible }"
       >
-        <span class="section-tag">Services</span>
-        <h2>We provide digital solutions<br>for any industry</h2>
-        <p class="fourth-sub">
-          At DAS UTY, we turn your digital ideas into working technologies.
-          With technology, we take your business to the next level.
-        </p>
+        <span class="section-tag">{{ $t('fourth.tag') }}</span>
+        <h2>{{ $t('fourth.title') }}</h2>
+        <p class="fourth-sub">{{ $t('fourth.sub') }}</p>
       </div>
 
       <!-- ── Grid ── -->
       <div class="fourth-grid">
         <article
           v-for="(item, i) in items"
-          :key="item.title"
+          :key="item.key"
           class="fourth-item"
           :class="[`item-${item.tone}`, { 'card-visible': visibleCards[i] }]"
           :data-anim="`card-${i}`"
@@ -116,12 +78,12 @@ onUnmounted(() => observer?.disconnect())
             <span class="item-num" :class="`num-${item.tone}`">{{ item.num }}</span>
           </div>
 
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.body }}</p>
+          <h3>{{ $t(`fourth.${item.key}_title`) }}</h3>
+          <p>{{ $t(`fourth.${item.key}_body`) }}</p>
 
           <!-- footer link -->
           <a href="#" class="item-link" :class="`link-${item.tone}`">
-            Discover more
+            {{ $t('fourth.discover') }}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M13 6l6 6-6 6"
                 stroke="currentColor" stroke-width="2"
@@ -351,4 +313,28 @@ onUnmounted(() => observer?.disconnect())
   .fourth-card { padding: 22px 16px 24px }
   .fourth-grid { grid-template-columns: 1fr }
 }
+
+/* ── Dark mode ───────────────────────────── */
+:global(.dark) .fourth-shell { background: #080b18; }
+:global(.dark) .fourth-card {
+  background: #0f1120;
+  box-shadow: 0 2px 0 rgba(0,0,0,.2), 0 24px 48px rgba(0,0,0,.4);
+}
+:global(.dark) .section-tag  { background: rgba(79,108,255,.15); color: #7b8fff; }
+:global(.dark) .fourth-card h2 { color: #e8eaf0; }
+:global(.dark) .fourth-sub   { color: rgba(255,255,255,.45); }
+
+:global(.dark) .fourth-item {
+  background: #13152a;
+  border-color: rgba(255,255,255,.07);
+}
+:global(.dark) .fourth-item h3 { color: #e0e3f0; }
+:global(.dark) .fourth-item p  { color: rgba(255,255,255,.45); }
+
+:global(.dark) .icon-bg-blue   { background: rgba(79,114,255,.12); border-color: rgba(79,114,255,.2); }
+:global(.dark) .icon-bg-violet { background: rgba(124,98,255,.12); border-color: rgba(124,98,255,.2); }
+:global(.dark) .icon-bg-cyan   { background: rgba(26,173,164,.12); border-color: rgba(26,173,164,.2); }
+:global(.dark) .icon-bg-gold   { background: rgba(244,183,64,.1);  border-color: rgba(244,183,64,.2); }
+:global(.dark) .icon-bg-pink   { background: rgba(255,111,183,.1); border-color: rgba(255,111,183,.2); }
+:global(.dark) .icon-bg-green  { background: rgba(34,197,94,.1);   border-color: rgba(34,197,94,.18); }
 </style>
