@@ -5,11 +5,260 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ────────────────────────────────────────────────────────
+   Element Plus dark mode system — design token overrides
+   All dark mode logic lives here; components use vars only
+   ──────────────────────────────────────────────────────── */
 
+/* Light mode tokens */
+:root {
+  /* ── Element Plus core vars (project palette) ── */
+  --el-bg-color-page:     #f4f5fb;
+  --el-bg-color:          #ffffff;
+  --el-bg-color-overlay:  #fafafa;
+  --el-text-color-primary:   #0d0e1c;
+  --el-text-color-regular:   #374151;
+  --el-text-color-secondary: #8890aa;
+  --el-border-color:          rgba(110, 120, 180, 0.15);
+  --el-border-color-light:    rgba(110, 120, 180, 0.10);
+  --el-fill-color-light:      #fafafa;
+  --el-fill-color-blank:      #ffffff;
 
+  /* ── Section & card layout ── */
+  --section-bg:           #f4f5fb;
+  --section-bg-white:     #ffffff;
+  --card-bg:              #ffffff;
+  --card-item-bg:         #fafafa;
+  --card-shadow:          0 2px 0 rgba(80,100,200,0.04), 0 24px 48px rgba(22,30,80,0.07);
+  --card-title-color:     #0d0e1c;
+  --card-subtitle-color:  #8890aa;
+  --card-item-border:     rgba(110, 120, 180, 0.10);
+  --card-item-title-color:#111320;
+  --card-item-text-color: #8890aa;
+  --card-footer-border:   rgba(110, 120, 180, 0.08);
+  --card-stat-label-color:#aab0c4;
+  --card-hover-shadow:    0 20px 40px rgba(20, 28, 80, 0.10);
+  --six-card-shadow:      0 2px 0 rgba(80,100,200,0.04), 0 8px 32px rgba(22,30,80,0.06);
+  --six-card-hover-shadow:0 20px 48px rgba(20, 28, 80, 0.10);
+
+  /* ── Section tag pill ── */
+  --section-tag-bg:    #eef0ff;
+  --section-tag-color: #4f6cff;
+
+  /* ── Navbar ── */
+  --nav-shrink-bg:             rgba(255, 255, 255, 0.90);
+  --nav-shrink-shadow:         0 10px 30px rgba(16, 24, 40, 0.08);
+  --nav-link-color:            #374151;
+  --nav-link-hover-color:      #0f172a;
+  --icon-btn-bg:               rgba(15, 23, 42, 0.06);
+  --icon-btn-border:           rgba(15, 23, 42, 0.12);
+  --icon-btn-color:            rgba(15, 23, 42, 0.75);
+  --icon-btn-hover-bg:         rgba(15, 23, 42, 0.10);
+  --icon-btn-hover-border:     rgba(15, 23, 42, 0.20);
+  --icon-btn-hover-color:      #0f172a;
+  --icon-btn-active-bg:        rgba(15, 23, 42, 0.12);
+  --icon-btn-active-border:    rgba(15, 23, 42, 0.28);
+  --icon-btn-active-color:     #0f172a;
+  --dropdown-bg:               rgba(255, 255, 255, 0.98);
+  --dropdown-border:           rgba(15, 23, 42, 0.12);
+  --dropdown-shadow:           0 16px 40px rgba(16, 24, 40, 0.14);
+  --dropdown-header-color:     rgba(15, 23, 42, 0.50);
+  --dropdown-item-color:       rgba(15, 23, 42, 0.75);
+  --dropdown-item-hover-bg:    rgba(15, 23, 42, 0.08);
+  --dropdown-item-hover-color: #0f172a;
+  --dropdown-item-active-color:#0f172a;
+  --dropdown-item-active-bg:   rgba(15, 23, 42, 0.10);
+
+  /* ── Hero section ── */
+  --hero-bg:               linear-gradient(135deg, #eef1ff 0%, #f4f6ff 50%, #eef1ff 100%);
+  --hero-ink:              #0d0e1c;
+  --hero-muted:            rgba(13, 14, 28, 0.55);
+  --hero-kicker-color:     #2b5cff;
+  --hero-grad:             linear-gradient(135deg, #0d0e1c 30%, #2b5cff 65%, #7b47ff 100%);
+  --hero-stat-num-grad:    linear-gradient(90deg, #0d0e1c, #2b5cff);
+  --hero-stat-label-color: rgba(13, 14, 28, 0.40);
+  --hero-stat-divider:     rgba(13, 14, 28, 0.12);
+
+  /* ── Icon backgrounds & colors (second / third / fourth) ── */
+  --icon-blue-bg:     #eff2ff;
+  --icon-blue-border: rgba(79, 114, 255, 0.15);
+  --icon-blue-color:  #4f72ff;
+  --icon-violet-bg:   #f1ecff;
+  --icon-violet-border:rgba(124, 98, 255, 0.15);
+  --icon-violet-color:#7c62ff;
+  --icon-cyan-bg:     #e6faf9;
+  --icon-cyan-border: rgba(26, 173, 164, 0.15);
+  --icon-cyan-color:  #1aada4;
+  --icon-pink-bg:     #ffe8f4;
+  --icon-pink-border: rgba(255, 111, 183, 0.15);
+  --icon-pink-color:  #e0549a;
+  --icon-gold-bg:     #fff6e0;
+  --icon-gold-border: rgba(244, 183, 64, 0.20);
+  --icon-green-bg:    #f0fdf4;
+  --icon-green-border:rgba(34, 197, 94, 0.18);
+
+  /* ── Service badges (second) ── */
+  --badge-blue-bg:    #eff2ff;
+  --badge-blue-color: #4f72ff;
+  --badge-gold-bg:    #fff6e0;
+  --badge-gold-color: #d49b10;
+  --badge-violet-bg:  #f1ecff;
+  --badge-violet-color:#7c62ff;
+  --badge-pink-bg:    #ffe8f4;
+  --badge-pink-color: #e0549a;
+
+  /* ── Third section ── */
+  --float-badge-bg:    #ffffff;
+  --float-badge-color: #12131e;
+  --float-badge-shadow:0 8px 28px rgba(20, 30, 90, 0.13);
+  --trust-text-color:  #8890aa;
+  --trust-dot-border:  #ffffff;
+
+  /* ── Clients / Testimonials ── */
+  --testimonial-back-card: #e8ecff;
+  --testimonial-photo-shadow: 0 20px 48px rgba(20, 30, 90, 0.12);
+
+  /* ── Footer ── */
+  --footer-bg:             #eef1ff;
+  --footer-blob:           #dde5ff;
+  --footer-desc-color:     #8890aa;
+  --footer-link-color:     #374151;
+  --footer-link-hover:     #4f6cff;
+  --footer-social-border:  rgba(110, 120, 180, 0.22);
+  --footer-social-color:   #4f6cff;
+  --footer-divider:        rgba(110, 120, 180, 0.18);
+  --footer-copyright:      #8890aa;
+  --footer-label-color:    #111320;
+  --footer-value-color:    #8890aa;
+}
+
+/* ── Dark mode — Element Plus dark system + project palette ── */
+.dark {
+  /* ── Element Plus core vars ── */
+  --el-bg-color-page:     #080b18;
+  --el-bg-color:          #080b18;
+  --el-bg-color-overlay:  #13152a;
+  --el-text-color-primary:   #e8eaf0;
+  --el-text-color-regular:   rgba(255, 255, 255, 0.75);
+  --el-text-color-secondary: rgba(255, 255, 255, 0.45);
+  --el-border-color:          rgba(255, 255, 255, 0.10);
+  --el-border-color-light:    rgba(255, 255, 255, 0.07);
+  --el-fill-color-light:      #13152a;
+  --el-fill-color-blank:      #0f1120;
+
+  /* ── Section & card layout ── */
+  --section-bg:           #080b18;
+  --section-bg-white:     #080b18;
+  --card-bg:              #0f1120;
+  --card-item-bg:         #13152a;
+  --card-shadow:          0 2px 0 rgba(0,0,0,0.20), 0 24px 48px rgba(0,0,0,0.40);
+  --card-title-color:     #e8eaf0;
+  --card-subtitle-color:  rgba(255, 255, 255, 0.45);
+  --card-item-border:     rgba(255, 255, 255, 0.07);
+  --card-item-title-color:#e0e3f0;
+  --card-item-text-color: rgba(255, 255, 255, 0.45);
+  --card-footer-border:   rgba(255, 255, 255, 0.06);
+  --card-stat-label-color:rgba(255, 255, 255, 0.35);
+  --card-hover-shadow:    0 20px 40px rgba(0, 0, 0, 0.30);
+  --six-card-shadow:      0 2px 0 rgba(0,0,0,0.20), 0 8px 32px rgba(0,0,0,0.35);
+  --six-card-hover-shadow:0 20px 48px rgba(0, 0, 0, 0.50);
+
+  /* ── Section tag pill ── */
+  --section-tag-bg:    rgba(79, 108, 255, 0.15);
+  --section-tag-color: #7b8fff;
+
+  /* ── Navbar ── */
+  --nav-shrink-bg:             rgba(6, 11, 24, 0.85);
+  --nav-shrink-shadow:         none;
+  --nav-link-color:            #aaaaaa;
+  --nav-link-hover-color:      #ffffff;
+  --icon-btn-bg:               rgba(255, 255, 255, 0.06);
+  --icon-btn-border:           rgba(255, 255, 255, 0.10);
+  --icon-btn-color:            rgba(255, 255, 255, 0.75);
+  --icon-btn-hover-bg:         rgba(255, 255, 255, 0.12);
+  --icon-btn-hover-border:     rgba(255, 255, 255, 0.20);
+  --icon-btn-hover-color:      #ffffff;
+  --icon-btn-active-bg:        rgba(255, 255, 255, 0.14);
+  --icon-btn-active-border:    rgba(255, 255, 255, 0.28);
+  --icon-btn-active-color:     #ffffff;
+  --dropdown-bg:               rgba(14, 16, 28, 0.96);
+  --dropdown-border:           rgba(255, 255, 255, 0.10);
+  --dropdown-shadow:           0 16px 48px rgba(0,0,0,0.50), 0 2px 8px rgba(0,0,0,0.30);
+  --dropdown-header-color:     rgba(255, 255, 255, 0.35);
+  --dropdown-item-color:       rgba(255, 255, 255, 0.65);
+  --dropdown-item-hover-bg:    rgba(255, 255, 255, 0.08);
+  --dropdown-item-hover-color: #ffffff;
+  --dropdown-item-active-color:#ffffff;
+  --dropdown-item-active-bg:   rgba(255, 255, 255, 0.10);
+
+  /* ── Hero section ── */
+  --hero-bg:               linear-gradient(135deg, #060b18 0%, #0a0f24 50%, #060b18 100%);
+  --hero-ink:              #ffffff;
+  --hero-muted:            rgba(255, 255, 255, 0.45);
+  --hero-kicker-color:     #44ebe1;
+  --hero-grad:             linear-gradient(135deg, #fff 30%, #44ebe1 65%, #2b5cff 100%);
+  --hero-stat-num-grad:    linear-gradient(90deg, #fff, #44ebe1);
+  --hero-stat-label-color: rgba(255, 255, 255, 0.30);
+  --hero-stat-divider:     rgba(255, 255, 255, 0.08);
+
+  /* ── Icon backgrounds & colors ── */
+  --icon-blue-bg:      rgba(79, 114, 255, 0.12);
+  --icon-blue-border:  rgba(79, 114, 255, 0.20);
+  --icon-blue-color:   #6d8dff;
+  --icon-violet-bg:    rgba(124, 98, 255, 0.12);
+  --icon-violet-border:rgba(124, 98, 255, 0.20);
+  --icon-violet-color: #a98eff;
+  --icon-cyan-bg:      rgba(26, 173, 164, 0.12);
+  --icon-cyan-border:  rgba(26, 173, 164, 0.20);
+  --icon-cyan-color:   #2dd4bf;
+  --icon-pink-bg:      rgba(255, 111, 183, 0.10);
+  --icon-pink-border:  rgba(255, 111, 183, 0.20);
+  --icon-pink-color:   #ff8ec8;
+  --icon-gold-bg:      rgba(244, 183, 64, 0.10);
+  --icon-gold-border:  rgba(244, 183, 64, 0.20);
+  --icon-green-bg:     rgba(34, 197, 94, 0.10);
+  --icon-green-border: rgba(34, 197, 94, 0.18);
+
+  /* ── Service badges ── */
+  --badge-blue-bg:     rgba(79, 114, 255, 0.15);
+  --badge-blue-color:  #7b8fff;
+  --badge-gold-bg:     rgba(244, 183, 64, 0.12);
+  --badge-gold-color:  #f4b740;
+  --badge-violet-bg:   rgba(124, 98, 255, 0.15);
+  --badge-violet-color:#a98eff;
+  --badge-pink-bg:     rgba(255, 111, 183, 0.12);
+  --badge-pink-color:  #ff8ec8;
+
+  /* ── Third section ── */
+  --float-badge-bg:    #1a1d32;
+  --float-badge-color: rgba(255, 255, 255, 0.85);
+  --float-badge-shadow:0 8px 28px rgba(0,0,0,0.40);
+  --trust-text-color:  rgba(255, 255, 255, 0.40);
+  --trust-dot-border:  #0f1120;
+
+  /* ── Clients / Testimonials ── */
+  --testimonial-back-card: #1a1d32;
+  --testimonial-photo-shadow: 0 20px 48px rgba(0, 0, 0, 0.40);
+
+  /* ── Footer ── */
+  --footer-bg:             #060b18;
+  --footer-blob:           #0e1326;
+  --footer-desc-color:     rgba(255, 255, 255, 0.45);
+  --footer-link-color:     rgba(255, 255, 255, 0.60);
+  --footer-link-hover:     #7b8fff;
+  --footer-social-border:  rgba(255, 255, 255, 0.12);
+  --footer-social-color:   #7b8fff;
+  --footer-divider:        rgba(255, 255, 255, 0.08);
+  --footer-copyright:      rgba(255, 255, 255, 0.30);
+  --footer-label-color:    #e0e3f0;
+  --footer-value-color:    rgba(255, 255, 255, 0.45);
+}
+
+/* ── Base body styles ── */
 body {
-  background-color: #fff;
-   font-family: "Comfortaa", sans-serif;
+  background-color: var(--el-bg-color-page);
+  color: var(--el-text-color-primary);
+  font-family: "Comfortaa", sans-serif;
 }
 
 .el-dialog {

@@ -2,7 +2,7 @@
 import { onMounted, onUnmounted, ref, computed } from "vue";
 import { useI18n } from "#imports";
 import { useColorMode } from "#imports";
-import logo from "@/assets/images/Logo.png";
+import logo from "@/assets/images/logotypeblue.svg";
 
 const isShrunk = ref(false);
 const rootRef = ref<HTMLElement | null>(null);
@@ -86,7 +86,7 @@ const navItems = [
   <header class="nav" :class="{ shrink: isShrunk }" ref="rootRef">
     <div class="nav-inner">
       <div class="brand">
-        <img :src="logo" alt="logo" class="brand-logo" />
+        <component :is="logo" class="brand-logo" />
       </div>
 
       <nav class="nav-links">
@@ -141,7 +141,7 @@ const navItems = [
                 v-for="opt in localeOptions"
                 :key="opt.code"
                 class="dropdown-item"
-                :class="{ 'is-active': locale === opt.code }"
+                :class="{ 'is-active': locale === opt.code } "
                 @click="setLocale(opt.code); closeDropdowns();"
               >
                 <span class="item-label">{{ opt.label }}</span>
@@ -245,8 +245,9 @@ const navItems = [
   max-width: 900px;
   padding: 12px 24px;
   border-radius: 999px;
-  background: rgba(6, 11, 24, 0.85);
+  background: var(--nav-shrink-bg);
   backdrop-filter: blur(20px);
+  box-shadow: var(--nav-shrink-shadow);
 }
 
 .brand-logo {
@@ -259,14 +260,14 @@ const navItems = [
 }
 
 .nav-link {
-  color: #aaa;
+  color: var(--nav-link-color);
   background: none;
   border: none;
   cursor: pointer;
 }
 
 .nav-link:hover {
-  color: white;
+  color: var(--nav-link-hover-color);
 }
 
 .nav-right {
@@ -275,31 +276,30 @@ const navItems = [
   gap: 8px;
 }
 
-/* Icon button (language & theme triggers) */
 .icon-btn {
   display: flex;
   align-items: center;
   gap: 5px;
   padding: 7px 12px;
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--icon-btn-border);
+  background: var(--icon-btn-bg);
+  color: var(--icon-btn-color);
   cursor: pointer;
   transition: background 0.2s, border-color 0.2s, color 0.2s;
   white-space: nowrap;
 }
 
 .icon-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: var(--icon-btn-hover-bg);
+  border-color: var(--icon-btn-hover-border);
+  color: var(--icon-btn-hover-color);
 }
 
 .icon-btn.active {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.28);
-  color: #fff;
+  background: var(--icon-btn-active-bg);
+  border-color: var(--icon-btn-active-border);
+  color: var(--icon-btn-active-color);
 }
 
 .btn-icon {
@@ -336,13 +336,13 @@ const navItems = [
   right: 0;
   top: calc(100% + 8px);
   min-width: 168px;
-  background: rgba(14, 16, 28, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--dropdown-bg);
+  border: 1px solid var(--dropdown-border);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   padding: 6px;
   border-radius: 14px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: var(--dropdown-shadow);
   z-index: 200;
 }
 
@@ -351,7 +351,7 @@ const navItems = [
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--dropdown-header-color);
   padding: 4px 10px 6px;
 }
 
@@ -362,7 +362,7 @@ const navItems = [
   width: 100%;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--dropdown-item-color);
   padding: 8px 10px;
   border-radius: 8px;
   text-align: left;
@@ -372,13 +372,13 @@ const navItems = [
 }
 
 .dropdown-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: var(--dropdown-item-hover-bg);
+  color: var(--dropdown-item-hover-color);
 }
 
 .dropdown-item.is-active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.1);
+  color: var(--dropdown-item-active-color);
+  background: var(--dropdown-item-active-bg);
 }
 
 .item-icon {

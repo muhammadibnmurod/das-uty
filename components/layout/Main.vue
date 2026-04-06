@@ -189,9 +189,6 @@ onUnmounted(() => {
 <style scoped>
 /* ── Tokens ── */
 .hs {
-  --bg:     #060b18;
-  --ink:    #ffffff;
-  --muted:  rgba(255,255,255,0.45);
   --blue:   #2b5cff;
   --cyan:   #44ebe1;
   --purple: #7b47ff;
@@ -201,26 +198,9 @@ onUnmounted(() => {
   position: relative;
   overflow: hidden;
   min-height: 100vh;
-  background: linear-gradient(135deg, #060b18 0%, #0a0f24 50%, #060b18 100%);
-  color: var(--ink);
+  background: var(--hero-bg);
+  color: var(--hero-ink);
 }
-
-/* ── Light mode ── */
-:global(.light) .hs {
-  --ink:   #0d0e1c;
-  --muted: rgba(13,14,28,0.55);
-  background: linear-gradient(135deg, #eef1ff 0%, #f4f6ff 50%, #eef1ff 100%);
-}
-:global(.light) .hs .kicker { color: var(--blue); }
-:global(.light) .hs .grad {
-  background: linear-gradient(135deg, #0d0e1c 30%, #2b5cff 65%, #7b47ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-:global(.light) .hs .sub-text { color: var(--muted); }
-:global(.light) .hs .stat-label { color: rgba(13,14,28,0.4); }
-:global(.light) .hs .stat-divider { background: rgba(13,14,28,0.12); }
 
 
 /* ── Ambient blobs ── */
@@ -272,7 +252,7 @@ onUnmounted(() => {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 4px;
-  color: var(--cyan);
+  color: var(--hero-kicker-color);
   text-transform: uppercase;
   opacity: 0;
   animation: fadeUp .6s .2s forwards;
@@ -288,7 +268,7 @@ h1 {
   animation: fadeUp .7s .4s forwards;
 }
 .grad {
-  background: linear-gradient(135deg, #fff 30%, var(--cyan) 65%, var(--blue) 100%);
+  background: var(--hero-grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -296,7 +276,7 @@ h1 {
 .sub-text {
   max-width: 380px;
   margin: 18px 0 0;
-  color: var(--muted);
+  color: var(--hero-muted);
   font-size: 13.5px;
   line-height: 1.7;
   opacity: 0;
@@ -353,13 +333,13 @@ h1 {
   font-family: 'Syne', Arial, sans-serif;
   font-size: 22px;
   font-weight: 800;
-  background: linear-gradient(90deg, #fff, var(--cyan));
+  background: var(--hero-stat-num-grad);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.stat-label { font-size: 11px; color: rgba(255,255,255,.3); letter-spacing: .5px }
-.stat-divider { width:1px;height:36px;background:rgba(255,255,255,.08) }
+.stat-label { font-size: 11px; color: var(--hero-stat-label-color); letter-spacing: .5px }
+.stat-divider { width:1px;height:36px;background:var(--hero-stat-divider) }
 
 @keyframes fadeUp {
   from { opacity:0; transform:translateY(22px) }

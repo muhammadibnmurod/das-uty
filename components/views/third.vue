@@ -59,8 +59,8 @@ onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
-  <section ref="sectionRef" class="third-shell">
-    <div class="third-card">
+  <section ref="sectionRef" class="third-shell py-8 px-5">
+    <div class="third-card rounded-[22px]">
 
       <!-- ── Left: Visual ── -->
       <div
@@ -141,12 +141,12 @@ onUnmounted(() => observer?.disconnect())
 <style scoped>
 /* ── Shell ───────────────────────────────────── */
 .third-shell {
-  background: #fff;
-  padding: 32px 20px 48px;
+  background: var(--section-bg-white);
 }
 
 /* ── Card ────────────────────────────────────── */
 .third-card {
+  background: var(--card-bg);
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 32px 36px;
@@ -154,11 +154,7 @@ onUnmounted(() => observer?.disconnect())
   grid-template-columns: minmax(260px, 420px) 1fr;
   align-items: center;
   gap: 40px;
-  border-radius: 22px;
-  background: #fff;
-  box-shadow:
-    0 2px 0 rgba(80, 100, 200, 0.04),
-    0 24px 48px rgba(22, 30, 80, 0.06);
+  box-shadow: var(--card-shadow);
 }
 
 /* ── Entrance animations ─────────────────────── */
@@ -224,11 +220,11 @@ onUnmounted(() => observer?.disconnect())
   gap: 7px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 8px 28px rgba(20, 30, 90, 0.13);
+  background: var(--float-badge-bg);
+  box-shadow: var(--float-badge-shadow);
   font-size: 11.5px;
   font-weight: 700;
-  color: #12131e;
+  color: var(--float-badge-color);
   white-space: nowrap;
   animation: badgeFloat 4s ease-in-out infinite;
 }
@@ -254,8 +250,8 @@ onUnmounted(() => observer?.disconnect())
   display: inline-block;
   padding: 4px 14px;
   border-radius: 20px;
-  background: #eef0ff;
-  color: #4f6cff;
+  background: var(--section-tag-bg);
+  color: var(--section-tag-color);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -267,7 +263,7 @@ onUnmounted(() => observer?.disconnect())
   margin: 0 0 12px;
   font-size: clamp(20px, 2.4vw, 28px);
   font-weight: 800;
-  color: #0d0e1c;
+  color: var(--card-title-color);
   line-height: 1.3;
 }
 
@@ -275,7 +271,7 @@ onUnmounted(() => observer?.disconnect())
   margin: 0 0 20px;
   font-size: 13px;
   line-height: 1.7;
-  color: #8890aa;
+  color: var(--card-subtitle-color);
   max-width: 460px;
 }
 
@@ -295,7 +291,7 @@ onUnmounted(() => observer?.disconnect())
   gap: 10px;
   font-size: 12.5px;
   font-weight: 600;
-  color: #12131e;
+  color: var(--card-item-title-color);
   line-height: 1.45;
   opacity: 0;
   transform: translateY(14px);
@@ -317,10 +313,10 @@ onUnmounted(() => observer?.disconnect())
 }
 .feature-item:hover .feature-icon { transform: scale(1.12) }
 
-.icon-blue   { background: #eff2ff; color: #4f72ff }
-.icon-violet { background: #f1ecff; color: #7c62ff }
-.icon-cyan   { background: #e6faf9; color: #1aada4 }
-.icon-pink   { background: #ffe8f4; color: #e0549a }
+.icon-blue   { background: var(--icon-blue-bg);   color: var(--icon-blue-color) }
+.icon-violet { background: var(--icon-violet-bg); color: var(--icon-violet-color) }
+.icon-cyan   { background: var(--icon-cyan-bg);   color: var(--icon-cyan-color) }
+.icon-pink   { background: var(--icon-pink-bg);   color: var(--icon-pink-color) }
 
 /* ── Button row ──────────────────────────────── */
 .btn-row {
@@ -373,7 +369,7 @@ onUnmounted(() => observer?.disconnect())
   height: 20px;
   border-radius: 50%;
   background: linear-gradient(135deg, #a0b4ff, #6680ff);
-  border: 2px solid #fff;
+  border: 2px solid var(--trust-dot-border);
   margin-left: -6px;
 }
 .trust-dot:first-child { margin-left: 0 }
@@ -381,7 +377,7 @@ onUnmounted(() => observer?.disconnect())
   margin-left: 6px;
   font-size: 11.5px;
   font-weight: 600;
-  color: #8890aa;
+  color: var(--trust-text-color);
 }
 
 /* ── Responsive ──────────────────────────────── */
@@ -407,25 +403,4 @@ onUnmounted(() => observer?.disconnect())
   .float-badge { display: none }
 }
 
-/* ── Dark mode ───────────────────────────────── */
-:global(.dark) .third-shell { background: #080b18; }
-:global(.dark) .third-card {
-  background: #0f1120;
-  box-shadow: 0 2px 0 rgba(0,0,0,.2), 0 24px 48px rgba(0,0,0,.4);
-}
-:global(.dark) .kicker-tag { background: rgba(79,108,255,.15); color: #7b8fff; }
-:global(.dark) .third-content h2 { color: #e8eaf0; }
-:global(.dark) .third-text { color: rgba(255,255,255,.45); }
-:global(.dark) .feature-item { color: rgba(255,255,255,.82); }
-:global(.dark) .icon-blue   { background: rgba(79,114,255,.12);  color: #6d8dff; }
-:global(.dark) .icon-violet { background: rgba(124,98,255,.12);  color: #a98eff; }
-:global(.dark) .icon-cyan   { background: rgba(26,173,164,.12);  color: #2dd4bf; }
-:global(.dark) .icon-pink   { background: rgba(255,111,183,.1);  color: #ff8ec8; }
-:global(.dark) .float-badge {
-  background: #1a1d32;
-  color: rgba(255,255,255,.85);
-  box-shadow: 0 8px 28px rgba(0,0,0,.4);
-}
-:global(.dark) .trust-text { color: rgba(255,255,255,.4); }
-:global(.dark) .trust-dot  { border-color: #0f1120; }
 </style>

@@ -54,8 +54,8 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="second-shell">
-    <div class="second-card">
+  <section ref="sectionRef" class="second-shell py-8 px-5">
+    <div class="second-card max-w-[1200px] mx-auto px-8 py-9 rounded-[22px]">
       <div class="header-wrap" data-index="title" :class="{ 'title-visible': titleVisible }">
         <span class="section-tag">{{ $t('second.tag') }}</span>
         <h2>{{ $t('second.title') }}</h2>
@@ -109,20 +109,13 @@ onUnmounted(() => {
 <style scoped>
 /* ── Shell ───────────────────────────────────────── */
 .second-shell {
-  background: #f4f5fb;
-  padding: 32px 20px 48px;
+  background: var(--section-bg);
 }
 
 /* ── Card wrapper ────────────────────────────────── */
 .second-card {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 32px 36px;
-  background: #fff;
-  border-radius: 22px;
-  box-shadow:
-    0 2px 0 rgba(80, 100, 200, 0.04),
-    0 24px 48px rgba(22, 30, 80, 0.07);
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
 }
 
 /* ── Header ──────────────────────────────────────── */
@@ -144,8 +137,8 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 14px;
   border-radius: 20px;
-  background: #eef0ff;
-  color: #4f6cff;
+  background: var(--section-tag-bg);
+  color: var(--section-tag-color);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -156,7 +149,7 @@ onUnmounted(() => {
 .second-card h2 {
   font-size: clamp(17px, 2vw, 24px);
   font-weight: 800;
-  color: #0d0e1c;
+  color: var(--card-title-color);
   margin: 0 auto 8px;
   max-width: 640px;
   line-height: 1.35;
@@ -164,7 +157,7 @@ onUnmounted(() => {
 
 .subtitle {
   font-size: 13px;
-  color: #8890aa;
+  color: var(--card-subtitle-color);
   margin: 0;
 }
 
@@ -178,10 +171,10 @@ onUnmounted(() => {
 /* ── Card ────────────────────────────────────────── */
 .service-item {
   position: relative;
-  background: #fafafa;
+  background: var(--card-item-bg);
   border-radius: 16px;
   padding: 18px 16px 16px;
-  border: 1px solid rgba(110, 120, 180, 0.1);
+  border: 1px solid var(--card-item-border);
   overflow: hidden;
   cursor: default;
   opacity: 0;
@@ -198,7 +191,7 @@ onUnmounted(() => {
 }
 .service-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(20, 28, 80, 0.1);
+  box-shadow: var(--card-hover-shadow);
 }
 
 /* tone border accent on hover */
@@ -229,10 +222,10 @@ onUnmounted(() => {
   transform: scale(1.1) rotate(-4deg);
 }
 
-.icon-blue   { background: #eff2ff; border: 1px solid rgba(79,114,255,.15); }
-.icon-gold   { background: #fff6e0; border: 1px solid rgba(244,183,64,.2); }
-.icon-violet { background: #f1ecff; border: 1px solid rgba(124,98,255,.15); }
-.icon-pink   { background: #ffe8f4; border: 1px solid rgba(255,111,183,.15); }
+.icon-blue   { background: var(--icon-blue-bg);   border: 1px solid var(--icon-blue-border); }
+.icon-gold   { background: var(--icon-gold-bg);   border: 1px solid var(--icon-gold-border); }
+.icon-violet { background: var(--icon-violet-bg); border: 1px solid var(--icon-violet-border); }
+.icon-pink   { background: var(--icon-pink-bg);   border: 1px solid var(--icon-pink-border); }
 
 .service-icon-img {
   width: 20px;
@@ -249,24 +242,24 @@ onUnmounted(() => {
   padding: 3px 8px;
   border-radius: 20px;
 }
-.badge-blue   { background: #eff2ff; color: #4f72ff; }
-.badge-gold   { background: #fff6e0; color: #d49b10; }
-.badge-violet { background: #f1ecff; color: #7c62ff; }
-.badge-pink   { background: #ffe8f4; color: #e0549a; }
+.badge-blue   { background: var(--badge-blue-bg);   color: var(--badge-blue-color); }
+.badge-gold   { background: var(--badge-gold-bg);   color: var(--badge-gold-color); }
+.badge-violet { background: var(--badge-violet-bg); color: var(--badge-violet-color); }
+.badge-pink   { background: var(--badge-pink-bg);   color: var(--badge-pink-color); }
 
 /* ── Typography ──────────────────────────────────── */
 .service-item h3 {
   margin: 0 0 7px;
   font-size: 13.5px;
   font-weight: 700;
-  color: #111320;
+  color: var(--card-item-title-color);
   line-height: 1.4;
 }
 .service-item p {
   margin: 0;
   font-size: 12px;
   line-height: 1.6;
-  color: #8890aa;
+  color: var(--card-item-text-color);
 }
 
 /* ── Footer ──────────────────────────────────────── */
@@ -276,7 +269,7 @@ onUnmounted(() => {
   justify-content: space-between;
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px solid rgba(110, 120, 180, 0.08);
+  border-top: 1px solid var(--card-footer-border);
 }
 
 .stat-block {
@@ -296,7 +289,7 @@ onUnmounted(() => {
 
 .stat-label {
   font-size: 10px;
-  color: #aab0c4;
+  color: var(--card-stat-label-color);
   font-weight: 500;
 }
 
@@ -344,32 +337,4 @@ onUnmounted(() => {
   .second-card h2 { font-size: 17px; }
 }
 
-/* ── Dark mode ───────────────────────────────────── */
-:global(.dark) .second-shell { background: #080b18; }
-:global(.dark) .second-card {
-  background: #0f1120;
-  box-shadow: 0 2px 0 rgba(0,0,0,.2), 0 24px 48px rgba(0,0,0,.4);
-}
-:global(.dark) .section-tag  { background: rgba(79,108,255,.15); color: #7b8fff; }
-:global(.dark) .second-card h2 { color: #e8eaf0; }
-:global(.dark) .subtitle     { color: rgba(255,255,255,.45); }
-
-:global(.dark) .service-item {
-  background: #13152a;
-  border-color: rgba(255,255,255,.07);
-}
-:global(.dark) .service-item h3 { color: #e0e3f0; }
-:global(.dark) .service-item p  { color: rgba(255,255,255,.45); }
-:global(.dark) .card-footer  { border-top-color: rgba(255,255,255,.06); }
-:global(.dark) .stat-label   { color: rgba(255,255,255,.35); }
-
-:global(.dark) .icon-blue   { background: rgba(79,114,255,.12); border-color: rgba(79,114,255,.2); }
-:global(.dark) .icon-gold   { background: rgba(244,183,64,.1);  border-color: rgba(244,183,64,.2); }
-:global(.dark) .icon-violet { background: rgba(124,98,255,.12); border-color: rgba(124,98,255,.2); }
-:global(.dark) .icon-pink   { background: rgba(255,111,183,.1); border-color: rgba(255,111,183,.2); }
-
-:global(.dark) .badge-blue   { background: rgba(79,114,255,.15);  color: #7b8fff; }
-:global(.dark) .badge-gold   { background: rgba(244,183,64,.12);  color: #f4b740; }
-:global(.dark) .badge-violet { background: rgba(124,98,255,.15);  color: #a98eff; }
-:global(.dark) .badge-pink   { background: rgba(255,111,183,.12); color: #ff8ec8; }
 </style>

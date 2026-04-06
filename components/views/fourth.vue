@@ -47,8 +47,8 @@ onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
-  <section ref="sectionRef" class="fourth-shell">
-    <div class="fourth-card">
+  <section ref="sectionRef" class="fourth-shell py-8 px-5">
+    <div class="fourth-card rounded-[22px]">
 
       <!-- ── Header ── -->
       <div
@@ -103,20 +103,16 @@ onUnmounted(() => observer?.disconnect())
 <style scoped>
 /* ── Shell ───────────────────────────────── */
 .fourth-shell {
-  background: #fff;
-  padding: 32px 20px 48px;
+  background: var(--section-bg-white);
 }
 
 /* ── Wrapper ─────────────────────────────── */
 .fourth-card {
+  background: var(--card-bg);
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 32px 36px;
-  background: #fff;
-  border-radius: 22px;
-  box-shadow:
-    0 2px 0 rgba(80, 100, 200, 0.04),
-    0 24px 48px rgba(22, 30, 80, 0.07);
+  box-shadow: var(--card-shadow);
 }
 
 /* ── Header ──────────────────────────────── */
@@ -136,8 +132,8 @@ onUnmounted(() => observer?.disconnect())
   display: inline-block;
   padding: 4px 14px;
   border-radius: 20px;
-  background: #eef0ff;
-  color: #4f6cff;
+  background: var(--section-tag-bg);
+  color: var(--section-tag-color);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -149,7 +145,7 @@ onUnmounted(() => observer?.disconnect())
   margin: 0 auto 10px;
   font-size: clamp(20px, 2.4vw, 28px);
   font-weight: 800;
-  color: #0d0e1c;
+  color: var(--card-title-color);
   line-height: 1.3;
 }
 
@@ -158,7 +154,7 @@ onUnmounted(() => observer?.disconnect())
   max-width: 500px;
   font-size: 13px;
   line-height: 1.65;
-  color: #8890aa;
+  color: var(--card-subtitle-color);
 }
 
 /* ── Grid ────────────────────────────────── */
@@ -171,10 +167,10 @@ onUnmounted(() => observer?.disconnect())
 /* ── Card ────────────────────────────────── */
 .fourth-item {
   position: relative;
-  background: #fafafa;
+  background: var(--card-item-bg);
   border-radius: 16px;
   padding: 20px 18px 18px;
-  border: 1px solid rgba(110, 120, 180, 0.1);
+  border: 1px solid var(--card-item-border);
   overflow: hidden;
   opacity: 0;
   transform: translateY(28px);
@@ -190,7 +186,7 @@ onUnmounted(() => observer?.disconnect())
 }
 .fourth-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(20, 28, 80, 0.1);
+  box-shadow: var(--card-hover-shadow);
 }
 
 /* tone border on hover */
@@ -228,12 +224,12 @@ onUnmounted(() => observer?.disconnect())
   object-fit: contain;
 }
 
-.icon-bg-blue   { background: #eff2ff; border: 1px solid rgba(79,114,255,.15) }
-.icon-bg-violet { background: #f1ecff; border: 1px solid rgba(124,98,255,.15) }
-.icon-bg-cyan   { background: #e6faf9; border: 1px solid rgba(26,173,164,.15) }
-.icon-bg-gold   { background: #fff6e0; border: 1px solid rgba(244,183,64,.2) }
-.icon-bg-pink   { background: #ffe8f4; border: 1px solid rgba(255,111,183,.15) }
-.icon-bg-green  { background: #f0fdf4; border: 1px solid rgba(34,197,94,.18) }
+.icon-bg-blue   { background: var(--icon-blue-bg);   border: 1px solid var(--icon-blue-border) }
+.icon-bg-violet { background: var(--icon-violet-bg); border: 1px solid var(--icon-violet-border) }
+.icon-bg-cyan   { background: var(--icon-cyan-bg);   border: 1px solid var(--icon-cyan-border) }
+.icon-bg-gold   { background: var(--icon-gold-bg);   border: 1px solid var(--icon-gold-border) }
+.icon-bg-pink   { background: var(--icon-pink-bg);   border: 1px solid var(--icon-pink-border) }
+.icon-bg-green  { background: var(--icon-green-bg);  border: 1px solid var(--icon-green-border) }
 
 /* ── Number badge ────────────────────────── */
 .item-num {
@@ -254,14 +250,14 @@ onUnmounted(() => observer?.disconnect())
   margin: 0 0 8px;
   font-size: 13.5px;
   font-weight: 700;
-  color: #111320;
+  color: var(--card-item-title-color);
   line-height: 1.4;
 }
 .fourth-item p {
   margin: 0 0 14px;
   font-size: 12px;
   line-height: 1.6;
-  color: #8890aa;
+  color: var(--card-item-text-color);
 }
 
 /* ── Link ────────────────────────────────── */
@@ -314,27 +310,4 @@ onUnmounted(() => observer?.disconnect())
   .fourth-grid { grid-template-columns: 1fr }
 }
 
-/* ── Dark mode ───────────────────────────── */
-:global(.dark) .fourth-shell { background: #080b18; }
-:global(.dark) .fourth-card {
-  background: #0f1120;
-  box-shadow: 0 2px 0 rgba(0,0,0,.2), 0 24px 48px rgba(0,0,0,.4);
-}
-:global(.dark) .section-tag  { background: rgba(79,108,255,.15); color: #7b8fff; }
-:global(.dark) .fourth-card h2 { color: #e8eaf0; }
-:global(.dark) .fourth-sub   { color: rgba(255,255,255,.45); }
-
-:global(.dark) .fourth-item {
-  background: #13152a;
-  border-color: rgba(255,255,255,.07);
-}
-:global(.dark) .fourth-item h3 { color: #e0e3f0; }
-:global(.dark) .fourth-item p  { color: rgba(255,255,255,.45); }
-
-:global(.dark) .icon-bg-blue   { background: rgba(79,114,255,.12); border-color: rgba(79,114,255,.2); }
-:global(.dark) .icon-bg-violet { background: rgba(124,98,255,.12); border-color: rgba(124,98,255,.2); }
-:global(.dark) .icon-bg-cyan   { background: rgba(26,173,164,.12); border-color: rgba(26,173,164,.2); }
-:global(.dark) .icon-bg-gold   { background: rgba(244,183,64,.1);  border-color: rgba(244,183,64,.2); }
-:global(.dark) .icon-bg-pink   { background: rgba(255,111,183,.1); border-color: rgba(255,111,183,.2); }
-:global(.dark) .icon-bg-green  { background: rgba(34,197,94,.1);   border-color: rgba(34,197,94,.18); }
 </style>
